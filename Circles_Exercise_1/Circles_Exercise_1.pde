@@ -15,22 +15,12 @@ void setup()
 //introduction of draw function
 void draw()
 {
-  noStroke();       //gets rid of outlines of shapes
-  
-  fill(color(0,0,0,10));
-  rect(0,0,x,y);     //rect(x,y of the top left corner of the rect, width, height)
-  
-  drawCircle(angle); //calling our drawCirlce function that we have created
-  if(angle > 310)    //condition operators && (and) , || (or)
-  {
-    angle = 0;
-  }
-  else
-  {
-    angle = angle + .2;
-    //println(angle);
-  }
+  //callling our self created functions
+  clearScreen();
+  drawCircle(angle);                       //calling our drawCirlce function that we have created
+  angle = adjustAngle(angle, 0.2);
 }
+
 void drawCircle(float hue_start)
 {
   //setting up color variables
@@ -41,7 +31,29 @@ void drawCircle(float hue_start)
   float bright = random(60,100);
   color randColor = color(hue,sat,bright); //no longer need to call the color function, can use the 'color' variable instead
   fill(randColor);                         //making use of the 'color' variable we made
-  circle(random(x),random(y),100);         //circle(x,y, height and width of elipse)
-  //mouseX mouseY
+  //circle(random(x),random(y),100);         //circle(x,y, height and width of elipse)
+  circle(mouseX,mouseY,100);             //creates cirlces where mouse is instead of at random
+  //mouseX mouseY                          //these 'global' variables collect position of the mouse X&Y coordinates
+}
+
+float adjustAngle(float ang, float rate)
+{
+  if(ang > 310)    //condition operators && (and) , || (or)
+  {
+    ang = 0;
+  }
+  else
+  {
+    ang = ang + rate;
+    //println(angle);
+  }
+  return(ang);
+}
+
+void clearScreen()
+{
+  noStroke();              //gets rid of outlines of shapes
+  fill(color(0,0,0,10));
+  rect(0,0,width,height);  //rect(x,y of the top left corner of the rect, width, height)
 }
 // HTML/JavaScript > C# >= Java > Python :D
