@@ -15,6 +15,9 @@ int nBoulder = 4;
 SkyBoulder[] b2;
 int nSkyBoulder = 4;
 
+Landscape[] L1;
+int nLandscape = 0;
+
 void setup()
 {
   size(1200,800);
@@ -64,32 +67,46 @@ void reset()
     g[i].addAnimation(new Animation(files8));
     g[i].addAnimation(new Animation(files9));
   }
-  String[] files10 = {"boulder1.svg"};
-  String[] files11 = {"boulder2.svg"};
-  String[] files12 = {"boulder3.svg"};
-  String[] files13 = {"boulder4.svg"};
-  String[] files14 = {"boulder5.svg"};
+  
+
+  
+  String[] files10 = {"pillar.svg"};
+  String[] files11 = {"boulder1.svg"};
+  
   b = new Boulder[nBoulder];
   for(int i = 0; i < nBoulder; i = i + 1)
   {
     b[i] = new Boulder(0,0,100,100);
     b[i].addAnimation(new Animation(files10));
-    b[i].addAnimation(new Animation(files11));
-    b[i].addAnimation(new Animation(files12));
-    b[i].addAnimation(new Animation(files13));
-    b[i].addAnimation(new Animation(files14));
+    b[i].addAnimation(new Animation(files10));
+    b[i].addAnimation(new Animation(files10));
+    b[i].addAnimation(new Animation(files10));
+    b[i].addAnimation(new Animation(files10));
+    b[i].checkSize();
   }  
   
   b2 = new SkyBoulder[nSkyBoulder];
-  for(int i = 0; i < nBoulder; i = i + 1)
+  for(int i = 0; i < nSkyBoulder; i = i + 1)
   {
     b2[i] = new SkyBoulder(0,0,100,100);
-    b2[i].addAnimation(new Animation(files10));
     b2[i].addAnimation(new Animation(files11));
-    b2[i].addAnimation(new Animation(files12));
-    b2[i].addAnimation(new Animation(files13));
-    b2[i].addAnimation(new Animation(files14));
+    b2[i].addAnimation(new Animation(files11));
+    b2[i].addAnimation(new Animation(files11));
+    b2[i].addAnimation(new Animation(files11));
+    b2[i].addAnimation(new Animation(files11));
+    b2[i].checkSize();
   }  
+  
+  nLandscape = ceil(width/1000.0)+1;
+  L1 = new Landscape[nLandscape];
+  String[] files12 = {"ground1.svg"};
+  for(int i = 0; i < nLandscape; i = i+1)
+  {
+    L1[i].location.x = (-width/2.0)+(i*1000.0);
+    L1[i].addAnimation(files12);
+    L1.randomPlacement=true;
+  }
+  
 }
 
 //end screen
@@ -100,18 +117,20 @@ void endScreen()
   rect(0,0,width,height);
   fill(255);
   textAlign(CENTER,CENTER);
-  text("You are in a Hellscape. Press a key to resurrect.",width/2,height/2);
+  text("You are in the Fire Lands. Press a key to resurrect.",width/2,height/2);
 }
 
 //startscreen
 void startScreen()
 {
   noStroke();
-  fill(color(255,0,100));
+  fill(color(105 ,0,0));
   rect(0,0,width,height);
   fill(255);
   textAlign(CENTER,CENTER);
-  text("Press any key to start",width/2,height/2);
+  String tip = "Press any key to start \nTIP: You only have 10 jumps!";
+  text(tip,width/2,height/2);
+  
 }
 
 
@@ -119,7 +138,7 @@ void startScreen()
 //game state
 void game()
 {
-  background(255);
+  background(color(215,109,0));
   translate(width/2,height/2);
   for(int i = 0; i < nGround; i = i + 1)
   {

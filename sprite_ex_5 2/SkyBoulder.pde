@@ -4,21 +4,16 @@ class SkyBoulder extends Sprite
   {
     super(xreg,yreg,bx,by);
     this.velocity.x = -8;
-    this.location.y = (height/2)-(boxx*6);
+    this.location.y = (height/2)-(boxx*random(4.5,7));
+    this.location.x = (width/2.0)+random(1000);
   }
   
   void check()
   {
     if(this.location.x <= -boxx-(width/2.0))
     {
-      this.currentAni = floor(random(0,this.nAni));
-      this.boxx = this.ani[currentAni].frames[0].width;
-      this.boxy = this.ani[currentAni].frames[0].height;
-      this.ani[currentAni].w=this.boxx;
-      this.ani[currentAni].h=this.boxy;
-      this.reg.x = boxx/2.0;
-      this.reg.y = boxy/2.0;
-      this.location.x = (width/2.0)+random(3000);
+      this.checkSize();
+      this.location.x = (width/2.0)+random(1000);
     }
     if(collision(this, s)) 
     {
@@ -26,4 +21,15 @@ class SkyBoulder extends Sprite
       gameState = 2;
     }
   }
+  
+  void checkSize()
+  {
+    this.currentAni = floor(random(0,this.nAni));
+    this.boxx = this.ani[currentAni].frames[0].width;
+    this.boxy = this.ani[currentAni].frames[0].height;
+    this.ani[currentAni].w=this.boxx;
+    this.ani[currentAni].h=this.boxy;
+    this.reg.x = boxx/2.0;
+    this.reg.y = boxy/2.0;
+  }  
 }

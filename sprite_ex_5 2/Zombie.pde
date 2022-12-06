@@ -12,9 +12,9 @@ class Zombie extends Sprite
    
    void jump()
    {
-     if(nJump < 100)
+     if(nJump < 10)
      {
-       this.velocity.y = -8;
+       this.velocity.y = -5;
        this.acceleration.y = 0.2;
        this.isJump = true;
        this.nJump = this.nJump + 1;
