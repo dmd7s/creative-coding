@@ -100,12 +100,12 @@ void reset()
   nLandscape = ceil(width/1000.0)+1;
   L1 = new Landscape[nLandscape];
   String[] files12 = {"ground1.svg"};
-  for(int i = 0; i < nLandscape; i = i+1)
-  {
-    L1[i].location.x = (-width/2.0)+(i*1000.0);
-    L1[i].addAnimation(files12);
-    L1.randomPlacement=true;
-  }
+  //for(int i = 0; i < nLandscape; i = i+1)
+ // {
+  //  L1[i].location.x = (-width/2.0)+(i*1000.0);
+   // L1[i].addAnimation(files12);
+   // L1.randomPlacement=true;
+ //}
   
 }
 
